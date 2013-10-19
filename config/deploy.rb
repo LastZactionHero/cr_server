@@ -1,5 +1,6 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require "bundler/capistrano"
+
+set :application, "cr_server"
 set :keep_releases, 5
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
@@ -38,4 +39,4 @@ namespace :deploy do
 end
 
 #after 'deploy:update_code', 'deploy:migrate'
-after "deploy:restart", "deploy:cleanup"
+#after "deploy:restart", "deploy:cleanup"
