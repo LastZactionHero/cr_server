@@ -3,7 +3,7 @@ class Label < ActiveRecord::Base
   
   def self.create_from_file(image)
     file_name = "label_#{DateTime.now}.png"
-    file_path = "#{Rails.root}/public/label_images/#{file_name}"
+    file_path = "#{Rails.root}/public/system/labels/#{file_name}"
     file = File.open(file_path, "wb")
     file.write(image.read)
     file.close
