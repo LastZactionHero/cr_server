@@ -1,3 +1,4 @@
+require "rvm/capistrano"
 require "bundler/capistrano"
 
 set :application, "cr_server"
@@ -17,6 +18,7 @@ server "yuccasix.com", :app, :web, :db, :primary => true
 set :application, "cr_server"
 set :deploy_to, "/var/www/#{application}"
 
+set :rvm_type, :system
 
 # role :web, "your web-server here"                          # Your HTTP server, Apache/etc
 # role :app, "your app-server here"                          # This may be the same as your `Web` server
@@ -38,5 +40,5 @@ namespace :deploy do
   end
 end
 
-#after 'deploy:update_code', 'deploy:migrate'
-#after "deploy:restart", "deploy:cleanup"
+after 'deploy:update_code', 'deploy:migrate'
+after "deploy:restart", "deploy:cleanup"

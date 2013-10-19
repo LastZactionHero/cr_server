@@ -1,4 +1,7 @@
 CrServer::Application.routes.draw do
+  
+  resources :labels, :only => [:create, :show]
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
