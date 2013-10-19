@@ -6,6 +6,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem "mysql2", "~> 0.3.13"
 
 gem "capistrano", :group => :development
 gem "rvm-capistrano", "~> 1.5.1", :group => :development
