@@ -1,5 +1,3 @@
-require 'fuzzystringmatch'
-
 class Ocr
   attr_accessor :ingredient_list
   
