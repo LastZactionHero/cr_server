@@ -9,6 +9,7 @@ class LabelsController < ApplicationController
   def show
     label = Label.find(params[:id])    
     render status: 200, json: {
+      id: label.id,
       status: label.status,
       debug: label.ingredient_string,
       ingredients: [
