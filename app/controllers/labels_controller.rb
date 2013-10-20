@@ -10,6 +10,7 @@ class LabelsController < ApplicationController
     label = Label.find(params[:id])    
     render status: 200, json: {
       status: label.status,
+      debug: label.ingredient_string,
       ingredients: [
         ingredient: {
           id: 1,
