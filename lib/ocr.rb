@@ -62,7 +62,7 @@ class Ocr
     end
     
           
-    ingredients = words.map{|w| w.ingredient}.uniq
+    ingredients = words.map{|w| w.ingredient}.uniq.compact
     ingredients
   end
   
@@ -71,8 +71,8 @@ class Ocr
       
     @ingredient_list.each do |ingredient|
       jarow = FuzzyStringMatch::JaroWinkler.create(:native)
-      distance = jarow.getDistance(ingredient, words)
-      if distance > nearest[:distance]
+      distance = jarow.getDistance(ingredient.upcase, words)
+      if distance > nearest[:distance] && distance > 0.8
         nearest[:distance] = distance
         nearest[:ingredient] = ingredient
       end      
@@ -89,13 +89,7 @@ class Ocr
   end
   
   def read_ingredient_list
-    filename = "#{Rails.root}/lib/additives/additive_list.txt"
-    
-    file = File.open(filename, "r")
-    list = file.readlines.map{|i| i.strip}
-    file.close
-    
-    list
+    Ingredient.name_list
   end
   
 end

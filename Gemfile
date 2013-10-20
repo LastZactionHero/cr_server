@@ -5,8 +5,10 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem "devise", "~> 3.1.1"
 gem "fuzzy-string-match", "~> 0.9.5"
 gem "mysql2", "~> 0.3.13"
+gem "rails_admin", "~> 0.4.9"
 gem "sidekiq", "~> 2.15.2"
 gem 'sqlite3'
 gem "tesseract-ocr", "~> 0.1.5"

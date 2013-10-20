@@ -1,10 +1,9 @@
 class Label < ActiveRecord::Base
-  attr_accessible :filename, :status, :ingredient_string
+  attr_accessible :filename, :status
+
+  has_and_belongs_to_many :ingredients
   
   before_validation :init_status, :on => :create
-
-  validates_inclusion_of :status, :in => [:initialized, :enqueued, 
-    :processing, :finished, :error]
     
   def self.create_from_file(image)
     label = Label.create
@@ -22,8 +21,13 @@ class Label < ActiveRecord::Base
     update_attributes({:filename => filename})
   end
   
-  def match_ingredients!(ingredients)
-    update_attributes({ingredient_string: ingredients.join("\n")})
+  def match_ingredients!(ingredient_names)
+    update_attributes({ingredient_string: ingredient_names.join("\n")})    
+    self.ingredients << Ingredient.where({name: ingredient_names})
+  end
+  
+  def ingredient_string
+    ingredients.pluck(:name).join(" ")
   end
     
   def queue!
