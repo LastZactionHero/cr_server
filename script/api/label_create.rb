@@ -1,6 +1,6 @@
 require 'rest-client'
 
-host = "http://localhost:3000/"
+host = "http://yuccasixcom/"
 path = "labels"
 url = "#{host}#{path}"
 

@@ -1,5 +1,6 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
+require 'sidekiq/capistrano'
 
 set :application, "cr_server"
 set :keep_releases, 5
