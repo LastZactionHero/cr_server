@@ -1,4 +1,7 @@
-include 'fuzzystringmatch'
+begin
+require 'fuzzystringmatch'
+rescue Exception => e
+end
 
 class Ocr
   attr_accessor :ingredient_list
