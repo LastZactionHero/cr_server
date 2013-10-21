@@ -72,7 +72,7 @@ class Ocr
     @ingredient_list.each do |ingredient|
       jarow = FuzzyStringMatch::JaroWinkler.create(:native)
       distance = jarow.getDistance(ingredient.upcase, words)
-      if distance > nearest[:distance] && distance > 0.8
+      if distance > nearest[:distance]
         nearest[:distance] = distance
         nearest[:ingredient] = ingredient
       end      
