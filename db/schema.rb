@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131020233458) do
+ActiveRecord::Schema.define(:version => 20131022074810) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
@@ -20,17 +20,23 @@ ActiveRecord::Schema.define(:version => 20131020233458) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "ingredients_labels", :id => false, :force => true do |t|
-    t.integer "label_id"
-    t.integer "ingredient_id"
-  end
-
   create_table "labels", :force => true do |t|
     t.string   "filename"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "status"
   end
+
+  create_table "matches", :force => true do |t|
+    t.integer  "ingredient_id"
+    t.integer  "label_id"
+    t.float    "similarity",    :default => 0.0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "matches", ["ingredient_id"], :name => "index_matches_on_ingredient_id"
+  add_index "matches", ["label_id"], :name => "index_matches_on_label_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

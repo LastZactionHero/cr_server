@@ -1,7 +1,8 @@
 class Label < ActiveRecord::Base
   attr_accessible :filename, :status
 
-  has_and_belongs_to_many :ingredients
+  has_many :matches
+  has_many :ingredients, :through => :matches
   
   before_validation :init_status, :on => :create
     
@@ -22,8 +23,9 @@ class Label < ActiveRecord::Base
   end
   
   def match_ingredients!(ingredient_names)
-    update_attributes({ingredient_string: ingredient_names.join("\n")})    
-    self.ingredients << Ingredient.where({name: ingredient_names})
+    Ingredient.where({name: ingredient_names}).each |i|
+      Match.create({label_id: id, ingredient_id: i.id})
+    end
   end
   
   def ingredient_string

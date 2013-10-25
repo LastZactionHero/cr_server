@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ingredient_id: 1
+  label_id: 1
+  similarity: 1.5
+
+two:
+  ingredient_id: 1
+  label_id: 1
+  similarity: 1.5
