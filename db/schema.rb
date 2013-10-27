@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022074810) do
+ActiveRecord::Schema.define(:version => 20131027012541) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
@@ -20,11 +20,15 @@ ActiveRecord::Schema.define(:version => 20131022074810) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "ingredients", ["name"], :name => "index_ingredients_on_name"
+
   create_table "labels", :force => true do |t|
     t.string   "filename"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "status"
+    t.float    "match",      :default => 0.0
+    t.integer  "rating"
   end
 
   create_table "matches", :force => true do |t|

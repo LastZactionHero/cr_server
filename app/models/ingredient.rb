@@ -4,6 +4,8 @@ class Ingredient < ActiveRecord::Base
   has_many :matches
   has_many :labels, :through => :matches
   
+  default_scope order("name ASC")
+   
   def self.name_list
     Ingredient.pluck(:name)
   end

@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem "devise", "~> 3.1.1"
 gem "fuzzy-string-match", "~> 0.9.5"
 gem "mysql2", "~> 0.3.13"
+gem "rabl", "~> 0.9.0"
 gem "rails_admin", "~> 0.4.9"
 gem "sidekiq", "~> 2.15.2"
 gem 'sqlite3'

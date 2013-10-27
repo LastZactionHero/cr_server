@@ -1,11 +1,16 @@
 class Label < ActiveRecord::Base
-  attr_accessible :filename, :status
+  attr_accessible :filename, :status, :rating
 
   has_many :matches
   has_many :ingredients, :through => :matches
   
   before_validation :init_status, :on => :create
-    
+  validates :rating, inclusion: { in: [nil, 1, 2, 3, 4, 5]}
+  
+  def similarity
+    matches.map{|m| m.similarity}.inject(:+) / matches.count
+  end
+  
   def self.create_from_file(image)
     label = Label.create
     label.save_file!(image)
@@ -22,9 +27,16 @@ class Label < ActiveRecord::Base
     update_attributes({:filename => filename})
   end
   
-  def match_ingredients!(ingredient_names)
-    Ingredient.where({name: ingredient_names}).each |i|
-      Match.create({label_id: id, ingredient_id: i.id})
+  def match_ingredients!(ingredient_matches)
+        
+    ingredient_matches.keys.each do |k|
+      data = ingredient_matches[k]
+      
+      ingredient = Ingredient.find_by_name data[:ingredient]
+      if ingredient
+       Match.create({label_id: id, ingredient_id: ingredient.id, similarity:
+         data[:similarity]})
+      end
     end
   end
   

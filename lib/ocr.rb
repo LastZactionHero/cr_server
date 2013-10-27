@@ -17,6 +17,10 @@ class Ocr
     def to_s
       "#{word} - #{match} - #{ingredient}"
     end
+    
+    def to_hash
+      {source_word: word, similarity: match, ingredient: ingredient}
+    end
   end
   
   # Split on commas into BLOCKS
@@ -34,6 +38,21 @@ class Ocr
     ingredients = []
     blocks.each{|b| ingredients << process_block(b)}
     ingredients.flatten!
+
+    ingredients.map!{|i| i.to_hash}
+    
+    output = Hash.new
+    
+    ingredients.each do |i|
+      key = i[:ingredient]
+      if output.has_key?(key)
+        output[key] = i if output[key][:similarity] <= i[:similarity]
+      else
+        output[key] = i
+      end
+    end
+    
+    output
   end
   
   private
@@ -61,9 +80,7 @@ class Ocr
       end
     end
     
-          
-    ingredients = words.map{|w| w.ingredient}.uniq.compact
-    ingredients
+    words
   end
   
   def match_ingredient words

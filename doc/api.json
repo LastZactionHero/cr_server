@@ -1,0 +1,70 @@
+POST /labels
+image: PNG file
+
+{
+  label: {
+    id: label id,
+  }
+}
+
+GET /labels/<id>
+
+{
+  label: {
+    status: "finished", initialized, enqueued, processing, finished, error
+    match: 0.0 - 	1.0,
+    rating: null, 1, 2, 3, 4, 5
+    similarity:0.97,
+    matches: [
+      {
+        match: {
+          similarity: 0.99,
+          ingredient: {
+            name:"Ingredients",
+            description:null
+          }
+        }
+      },...
+    ]
+  }
+}
+
+PUT /labels/<id>/rating
+
+rating: 1-5, nil
+
+200, {}
+
+GET /ingredients
+
+[
+  {
+    "ingredient":{
+      "id":120,
+      "name":"Calcium 5'"
+    }
+  },...
+]
+
+GET /ingredients/<id>
+
+{
+  "ingredient":{
+    "id":3,
+    "name":"Acacia",
+    "description":null
+  }
+}
+
+
+GET /ingredients/search
+name: Ingredient name, partial search
+
+[
+  {
+    "ingredient":{
+      "id":120,
+      "name":"Calcium 5'"
+    }
+  },...
+]

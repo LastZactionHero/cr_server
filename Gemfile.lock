@@ -109,6 +109,8 @@ GEM
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    rabl (0.9.0)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -209,6 +211,7 @@ DEPENDENCIES
   fuzzy-string-match (~> 0.9.5)
   jquery-rails
   mysql2 (~> 0.3.13)
+  rabl (~> 0.9.0)
   rails (= 3.2.13)
   rails_admin (~> 0.4.9)
   rest-client (~> 1.6.7)

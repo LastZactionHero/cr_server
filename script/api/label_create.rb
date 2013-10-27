@@ -2,7 +2,7 @@ require 'rest-client'
 
 host = "http://localhost:3000/"
 path = "labels"
-url = "#{host}#{path}"
+url = "#{host}#{path}.json"
 
 file_path = "label.jpg"
 
