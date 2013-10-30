@@ -13,7 +13,6 @@ GET /labels/<id>
   label: {
     id: label id,
     status: "finished", initialized, enqueued, processing, finished, error
-    match: 0.0 - 	1.0,
     rating: null, 1, 2, 3, 4, 5
     similarity:0.97,
     matches: [
