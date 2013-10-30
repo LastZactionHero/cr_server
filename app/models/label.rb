@@ -8,6 +8,7 @@ class Label < ActiveRecord::Base
   validates :rating, inclusion: { in: [nil, 1, 2, 3, 4, 5]}
   
   def similarity
+    return 0 if matches.empty?    
     matches.map{|m| m.similarity}.inject(:+) / matches.count
   end
   
