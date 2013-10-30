@@ -1,5 +1,5 @@
 object @label
-attributes :id, s:status, :rating
+attributes :id, :status, :rating
 node(:similarity) { |label| label.similarity }
 
 child :matches do
