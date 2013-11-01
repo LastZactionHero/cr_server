@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027012541) do
+ActiveRecord::Schema.define(:version => 20131101195232) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20131027012541) do
   end
 
   add_index "ingredients", ["name"], :name => "index_ingredients_on_name"
+
+  create_table "ingredients_regulatory_statuses", :id => false, :force => true do |t|
+    t.integer "ingredient_id"
+    t.integer "regulatory_status_id"
+  end
+
+  create_table "ingredients_technical_effects", :id => false, :force => true do |t|
+    t.integer "ingredient_id"
+    t.integer "technical_effect_id"
+  end
 
   create_table "labels", :force => true do |t|
     t.string   "filename"
@@ -54,6 +64,22 @@ ActiveRecord::Schema.define(:version => 20131027012541) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "regulatory_statuses", :force => true do |t|
+    t.string   "abbreviation"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "technical_effects", :force => true do |t|
+    t.string   "abbreviation"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
