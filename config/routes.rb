@@ -1,13 +1,16 @@
 CrServer::Application.routes.draw do
-  
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  devise_for :users
 
-  root :to => "home#index"
+  root :to => "landing#index"
+  resources :landing, only: [:index] do
+    collection do
+      post :signup
+    end
+  end
   
   devise_for :users
-  
-  
+    
   resources :labels, only: [:create, :show] do
     member do
       put 'rate'
