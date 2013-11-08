@@ -23,6 +23,15 @@ CrServer::Application.routes.draw do
     end
   end
   
+  resources :ingredient_of_the_weeks, only: [:index] do
+    collection do
+      get 'current'
+    end
+    member do
+      put 'distribute'
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

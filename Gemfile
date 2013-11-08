@@ -13,7 +13,7 @@ gem "rails_admin", "~> 0.4.9"
 gem "sidekiq", "~> 2.15.2"
 gem 'sqlite3'
 gem "tesseract-ocr", "~> 0.1.5"
-
+gem "urbanairship", "~> 2.3.3"
 
 gem "capistrano", :group => :development
 gem "rvm-capistrano", "~> 1.5.1", :group => :development

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103235104) do
+ActiveRecord::Schema.define(:version => 20131108053816) do
+
+  create_table "ingredient_of_the_weeks", :force => true do |t|
+    t.integer  "ingredient_id"
+    t.datetime "distributed_at"
+    t.boolean  "distributed",    :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"

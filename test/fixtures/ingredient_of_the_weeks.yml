@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ingredient_id: 1
+  distributed_at: 2013-11-07 22:38:16
+  distributed: false
+
+two:
+  ingredient_id: 1
+  distributed_at: 2013-11-07 22:38:16
+  distributed: false

@@ -1,0 +1,17 @@
+<h1>Ingredient of the Weeks</h1>
+<table class='table'>
+	<% @ingredient_of_the_weeks.each do |iow| %>
+		<tr>
+			<td><%= iow.ingredient %></td>
+			<td>
+				<% if iow.distributed %>
+					Distributed At: <%= iow.distributed_at %>
+				<% else %>
+					<%= link_to "Distribute", 
+						distribute_ingredient_of_the_week_path(iow), 
+						method: :put %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>

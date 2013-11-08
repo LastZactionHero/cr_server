@@ -14,4 +14,8 @@ class Ingredient < ActiveRecord::Base
     Ingredient.pluck(:name)
   end
   
+  def to_s
+    name
+  end
+
 end
