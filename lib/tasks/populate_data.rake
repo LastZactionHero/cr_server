@@ -1,3 +1,5 @@
+require 'wikipedia'
+
 namespace :populate_data do
   
   desc "Populate Regulatory Statuses"
@@ -59,6 +61,39 @@ namespace :populate_data do
       {abbreviation: "VET", name:"Veterinary Drug"}
     ].each do |te|
       TechnicalEffect.create(te)
+    end
+  end
+  
+  desc "Ingredient Descriptions from Wikipedia"
+  task :ingredient_descriptions_from_wikipedia => :environment do
+    count = Ingredient.count
+    current = 1
+    
+    Ingredient.all.each do |i|
+      puts "#{current} of #{count}: #{i.name}"
+
+      begin
+        page = Wikipedia.find(Ingredient.all.sample.name)
+        @wiki = WikiCloth::Parser.new({:data => page.content})
+        html = @wiki.to_html
+        plain = ActionView::Base.full_sanitizer.sanitize(html).strip
+        plain = CGI.unescapeHTML(plain)
+        first_paragraph = plain.split("\n")[0]
+      
+
+        if(first_paragraph && first_paragraph.length > 100)
+          first_paragraph = first_paragraph.gsub(/[ .,\]]\[[0-9]\]/, "")
+          puts first_paragraph
+          i.description = first_paragraph
+          i.save
+        else
+          "No Data"
+        end
+      rescue Exception => e
+      end
+      
+      current += 1
+      puts "\n\n"
     end
   end
   

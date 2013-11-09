@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108053816) do
+ActiveRecord::Schema.define(:version => 20131109194422) do
 
   create_table "ingredient_of_the_weeks", :force => true do |t|
     t.integer  "ingredient_id"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20131108053816) do
   create_table "ingredients", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "bulk_description", :default => true
   end
 
   add_index "ingredients", ["name"], :name => "index_ingredients_on_name"

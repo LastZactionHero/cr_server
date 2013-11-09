@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :bulk_description
   
   has_many :matches
   has_many :labels, :through => :matches

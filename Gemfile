@@ -14,6 +14,8 @@ gem "sidekiq", "~> 2.15.2"
 gem 'sqlite3'
 gem "tesseract-ocr", "~> 0.1.5"
 gem "urbanairship", "~> 2.3.3"
+gem "wikicloth", "~> 0.8.0"
+gem "wikipedia-client", "~> 1.3.0"
 
 gem "capistrano", :group => :development
 gem "rvm-capistrano", "~> 1.5.1", :group => :development
