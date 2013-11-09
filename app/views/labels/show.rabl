@@ -5,6 +5,6 @@ node(:similarity) { |label| label.similarity }
 child :matches, :object_root => false do
   attributes :similarity
   child :ingredient do
-    attributes :name, :description
+    attributes :id, :name, :description
   end
 end
