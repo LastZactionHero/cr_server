@@ -73,7 +73,7 @@ namespace :populate_data do
       puts "#{current} of #{count}: #{i.name}"
 
       begin
-        page = Wikipedia.find(Ingredient.all.sample.name)
+        page = Wikipedia.find(i.name)
         html = page.sanitized_content
         plain = ActionView::Base.full_sanitizer.sanitize(html).strip
         plain = CGI.unescapeHTML(plain)
