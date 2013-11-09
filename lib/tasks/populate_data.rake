@@ -74,12 +74,10 @@ namespace :populate_data do
 
       begin
         page = Wikipedia.find(Ingredient.all.sample.name)
-        @wiki = WikiCloth::Parser.new({:data => page.content})
-        html = @wiki.to_html
+        html = page.sanitized_content
         plain = ActionView::Base.full_sanitizer.sanitize(html).strip
         plain = CGI.unescapeHTML(plain)
         first_paragraph = plain.split("\n")[0]
-      
 
         if(first_paragraph && first_paragraph.length > 100)
           first_paragraph = first_paragraph.gsub(/[ .,\]]\[[0-9]\]/, "")
