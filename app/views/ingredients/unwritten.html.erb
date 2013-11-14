@@ -1,0 +1,11 @@
+<h1><%= @ingredients.count %> of <%= Ingredient.count %></h1>
+
+<table class='table table-striped'>
+	<% @ingredients.each do |ingredient| %>
+	<tr>
+		<td><%= ingredient.name %></td>
+		<td><%= link_to "Edit", edit_ingredient_path(ingredient) %></td>
+		<td><%= link_to "Delete", delete_ingredient_path(ingredient), :method => :delete, :confirm => "Are you sure?" %></td>
+	</tr>
+	<% end %>
+</table>

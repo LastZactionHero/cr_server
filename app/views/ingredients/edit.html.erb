@@ -1,0 +1,16 @@
+<%= form_for(@ingredient) do |f| %>
+<ul>
+	<li>	
+	<%= f.text_field :name %>
+	</li>
+	<li>
+	<%= f.text_area :description %>
+	</li>
+	<li>
+	<%= f.check_box :bulk_description %>
+	</li>
+	<li>
+	<%= f.submit %>
+	</li>
+</ul>
+<% end %>

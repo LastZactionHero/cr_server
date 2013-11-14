@@ -20,6 +20,14 @@ CrServer::Application.routes.draw do
   resources :ingredients, only: [:index, :show] do
     collection do
       get 'search'
+      
+      get 'unwritten'
+    end
+    
+    member do
+      get 'edit'
+      put 'update'
+      delete 'delete'
     end
   end
   
