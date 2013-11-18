@@ -1,3 +1,6 @@
+<%= @ingredient.technical_effects.map{|te| te.name }.join(", ") %><br/>
+<%= @ingredient.regulatory_statuses.map{|te| te.name }.join(", ") %><br/>
+
 <%= form_for(@ingredient) do |f| %>
 <ul>
 	<li>	

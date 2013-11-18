@@ -15,6 +15,7 @@ class IngredientsController < ApplicationController
   
   def unwritten
     @ingredients = Ingredient.where(bulk_description: true).order("name ASC")
+    @ingredients = @ingredients.map{|i| i.technical_effects.any? ? i : nil}.compact
   end
   
   def edit
