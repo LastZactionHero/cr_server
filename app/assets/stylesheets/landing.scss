@@ -27,7 +27,7 @@ body {
 
     #btn-sign-up {
       width: 80%;
-      margin-top: 4px;
+      margin-top: 40px;
     }
   }
 
@@ -70,11 +70,7 @@ body {
 }
 
 #screenshot-row {
-  //background-color:rgba(214,237,183,01);
-  background-color: #FFFFFF;
-  padding: 48px 0px;
-  //border-bottom: 1px solid #333333;
-  background-image:url('background.png');
+  background-color: #EEEEEE;
 }
 
 .screenshot-column {
@@ -86,19 +82,36 @@ body {
   font-size: 2.0em;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 24px;
-  margin-top: 12px;
+  margin-bottom: 48px;
   color: #333333;
   background-color:rgba(255,255,255,0.9);
-  //border-radius: 8px;
   padding-bottom: 12px;
+  padding-top: 64px;
 
   .subtitle {
     font-size: 0.5em;
+    font-weight: 300;
   }
 }
 
 .screenshot {
   text-align: center;
   margin-bottom: 48px;
+}
+
+#example-row {
+  background-color: #333333;
+  padding: 48px 0px;
+
+  #example-name {
+    color: #CCCCCC;
+    font-size: 3em;
+    font-weight: 100;
+  }
+
+  #example-description {
+    color: #DDDDDD;
+    font-size: 1.6em;
+    font-weight: 300;
+  }
 }
