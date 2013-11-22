@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   
   def index
-    
+    @test_danger = (params[:vtn] == 'd')
   end
 
   def signup
