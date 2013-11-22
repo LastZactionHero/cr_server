@@ -3,6 +3,8 @@ CrServer::Application.routes.draw do
   devise_for :users
 
   root :to => "landing#index"
+  match "/d", to: "landing#index"
+  
   resources :landing, only: [:index] do
     collection do
       post :signup

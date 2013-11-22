@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   
   def index
-    @test_danger = (params[:vtn] == 'd')
+    @test_danger = (request.original_fullpath == "/d")
   end
 
   def signup
