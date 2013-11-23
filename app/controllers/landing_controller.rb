@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   
-  def index
-    @test_danger = (request.original_fullpath == "/d")
+  def index    
+    @test_danger = (request.original_fullpath.match(/^\/d/))
   end
 
   def signup
