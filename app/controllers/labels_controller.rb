@@ -1,4 +1,6 @@
 class LabelsController < ApplicationController
+  load_and_authorize_resource
+  
   before_filter :find_label_or_fail, only: [:show, :rate]
   
   def create    

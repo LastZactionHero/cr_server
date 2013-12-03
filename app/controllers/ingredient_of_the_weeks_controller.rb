@@ -1,4 +1,6 @@
 class IngredientOfTheWeeksController < ApplicationController
+  authorize_resource :class => false
+  
   layout "admin"
   
   def index
