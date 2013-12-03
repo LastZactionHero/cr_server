@@ -6,5 +6,13 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+
+  validate :only_one_account, on: :create
+  
+  private
+  
+  def only_one_account
+    errors.add(:id, "Only one user can exist") if User.any?
+  end
+  
 end
