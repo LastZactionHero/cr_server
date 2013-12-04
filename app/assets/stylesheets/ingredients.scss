@@ -1,0 +1,83 @@
+html, body { height: 100% }
+
+.container {
+	min-height: 100%;
+	overflow: hidden;
+}
+
+#ingredients {
+	#ingredients-search-container {
+		margin-bottom: -9999px;
+		padding-bottom: 9999px;
+	
+		background-color: #277d2a;
+		background-image:url('background_gradient.png');
+		background-size: contain;
+	}
+	
+	#logo {
+		text-align: center;
+		margin-top: 36px;
+	}
+	
+	.search-bar {
+		font-size: 1.8em;
+		height: 72px;
+		border-radius: 0px;
+	}
+	
+	#search-bar-container {
+		margin-top: 24px;	
+		margin-bottom: 0px;
+	}
+	
+	#search-results {		
+		margin-top: 12px;
+		
+		ul {
+			background-color: white;
+			list-style-type: none;
+			padding: 0px;
+			margin: 0px;
+									
+			li {
+				font-size: 1.8em;
+				padding: 18px 14px;
+				margin: 0px;
+				border-top: 1px solid #dddddd;
+				cursor: pointer;
+			}
+		}
+	}
+	
+	#ingredient {
+		margin-top: 36px;
+		
+		.name {
+			margin-left: -16px;
+			
+			font-family:Garamond, Georgia, serif;
+			color: #333333;
+			font-style: italic;
+			font-size: 2.4em;
+		}
+		
+		.technical-effects {
+			margin-left: -16px;
+			
+			font-family:Garamond, Georgia, serif;
+			color: #dddddd;
+			font-size: 1.4em;	
+		}
+		
+		.description {
+			margin-top: 16px;
+			padding: 12px 24px;
+			background-color: #FFFFFF;
+			
+			font-family:Garamond, Georgia, serif;		
+			color: #333333;
+			font-size: 1.2em;
+		}
+	}
+}

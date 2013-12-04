@@ -3,15 +3,19 @@ class IngredientsController < ApplicationController
   
   def index
     @ingredients = Ingredient.all
+    @featured_ingredient = IngredientOfTheWeek.current.ingredient
   end
   
   def show
     @ingredient = Ingredient.find(params[:id])
+    render layout: false
   end
   
   def search
     name = params[:name]    
     @ingredients = name ? Ingredient.where("name like ?", "%#{name}%") : nil
+    
+    render layout: false
   end
   
   def unwritten

@@ -1,0 +1,9 @@
+<div class='col-md-12 name'>
+	<%= ingredient.name %>
+</div>
+<div class='col-md-12 technical-effects'>
+	<%= ingredient.technical_effects.map{|te| te.name.downcase}.join(" | ") %>
+</div>
+<div class='col-md-12 description'>
+	<%= ingredient.description %>
+</div>
