@@ -42,6 +42,8 @@ CrServer::Application.routes.draw do
     end
   end
   
+  match '*path' => 'ingredients#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

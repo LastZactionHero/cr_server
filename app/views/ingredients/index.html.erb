@@ -2,8 +2,10 @@
 	<div class='col-md-3 visible-md visible-lg' id='ingredient-list'>
 		<ul>
 		<% Ingredient.all.each do |i| %>
-			<li class='list-ingredient' data-id='<%= i.id %>'>
-				<%= i.name %>
+			<li>
+				<%= link_to i.name, i.path, 
+					class: 'list-ingredient', 
+					data_id: i.id, data_path: i.path %>
 			</li>
 		<% end %>
 		</ul>
@@ -34,87 +36,3 @@
 		</div>
 	</div>
 </div>
-
-
-<script type='text/javascript'>
-	$(document).ready(function(){
-		sizeIngredientBar();
-		$(window).resize(function(){sizeIngredientBar()});
-		
-		bindListIngredients();
-		
-		$(".search-bar").on('input', function(){
-			var name = $(this).val()
-			if(name.length > 0) {
-				toggleIngredient(false);
-				searchResults(name);
-			} else {
-				clearResults();				
-				if(name.length == 0) {
-					toggleIngredient(true);
-				}
-			}
-		});
-	});
-	
-	function searchResults(name) {
-		if(name.length >= 2) {
-			$.ajax({
-				url: "/ingredients/search",
-				data: {
-					name: name
-				},
-				success: function(data){				
-					$("#search-results").html(data);
-					bindSearchResults();
-				}			
-			});
-		} else {
-			clearResults();
-		}
-	}
-	
-	function clearResults() {
-		$("#search-results").html("");
-	}
-	
-	function toggleIngredient(visible) {
-		if(visible) {
-			$("#ingredient").fadeIn();
-		} else {
-			$("#ingredient").hide();
-		}
-	}
-	
-	function bindSearchResults(){
-		$(".search-result").click(function(){
-			var id = $(this).attr('data-id');
-			loadIngredient(id);
-		});
-	}
-	
-	function loadIngredient(id) {
-		clearResults();
-		
-		$.ajax({
-			url: "/ingredients/" + id,
-			success: function(data){				
-				$("#ingredient").html(data);
-				toggleIngredient(true);
-			}			
-		});
-	}
-	
-	function sizeIngredientBar() {
-		var windowHeight = $(window).height();
-		$("#ingredient-list").css('height', windowHeight);
-	}
-	
-	function bindListIngredients() {
-		$(".list-ingredient").click(function(){
-			var id = $(this).attr('data-id');
-			loadIngredient(id);
-		});
-	}
-	
-</script>

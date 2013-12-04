@@ -2,8 +2,8 @@ class IngredientsController < ApplicationController
   load_and_authorize_resource
   
   def index
+    @featured_ingredient = find_featured_ingredient(params[:path])    
     @ingredients = Ingredient.all
-    @featured_ingredient = IngredientOfTheWeek.current.ingredient
   end
   
   def show
@@ -36,6 +36,14 @@ class IngredientsController < ApplicationController
   def delete
     Ingredient.find(params[:id]).destroy
     redirect_to :action => :unwritten
+  end
+  
+  private 
+  
+  def find_featured_ingredient(name)
+    ingredient = Ingredient.find_by_name(name) if name
+    ingredient ||= IngredientOfTheWeek.current.ingredient
+    ingredient
   end
   
 end

@@ -17,5 +17,9 @@ class Ingredient < ActiveRecord::Base
   def to_s
     name
   end
+  
+  def path
+    "/#{URI::encode(name)}"
+  end
 
 end

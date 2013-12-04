@@ -1,6 +1,8 @@
 <ul>
 	<% @ingredients.first(5).each do |i| %>
-		<li class='search-result' data-id='<%= i.id %>'>
+		<li class='search-result' 
+			data_id='<%= i.id %>', 
+			data_path="<%= i.path %>">
 			<%= i.name %>
 		</li>
 	<% end %>	
