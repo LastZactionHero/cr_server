@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
   def search
     name = params[:name]    
     @ingredients = name ? Ingredient.where("name like ?", "%#{name}%") : nil
-    
+
     render layout: false
   end
   

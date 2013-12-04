@@ -1,5 +1,15 @@
 <div class='row' id='ingredients'>
-	<div class='col-md-12' id='ingredients-search-container'>
+	<div class='col-md-3 visible-md visible-lg' id='ingredient-list'>
+		<ul>
+		<% Ingredient.all.each do |i| %>
+			<li class='list-ingredient' data-id='<%= i.id %>'>
+				<%= i.name %>
+			</li>
+		<% end %>
+		</ul>
+	</div>
+	
+	<div class='col-md-9 col-sm-12' id='ingredients-search-container'>
 		<div class='row'>
 			<div class='col-md-offset-3 col-md-6 col-sm-8 col-sm-offset-2' id='logo-container'>
 				<div id='logo'>
@@ -28,6 +38,11 @@
 
 <script type='text/javascript'>
 	$(document).ready(function(){
+		sizeIngredientBar();
+		$(window).resize(function(){sizeIngredientBar()});
+		
+		bindListIngredients();
+		
 		$(".search-bar").on('input', function(){
 			var name = $(this).val()
 			if(name.length > 0) {
@@ -39,7 +54,6 @@
 					toggleIngredient(true);
 				}
 			}
-
 		});
 	});
 	
@@ -88,6 +102,18 @@
 				$("#ingredient").html(data);
 				toggleIngredient(true);
 			}			
+		});
+	}
+	
+	function sizeIngredientBar() {
+		var windowHeight = $(window).height();
+		$("#ingredient-list").css('height', windowHeight);
+	}
+	
+	function bindListIngredients() {
+		$(".list-ingredient").click(function(){
+			var id = $(this).attr('data-id');
+			loadIngredient(id);
 		});
 	}
 	
