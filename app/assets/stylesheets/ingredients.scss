@@ -15,9 +15,20 @@ html, body { height: 100% }
 		background-size: contain;
 	}
 	
-	#logo {
+	#logo-container {
 		text-align: center;
 		margin-top: 36px;
+		
+		#logo {
+			max-width: 375px; 
+			margin-left: auto; 
+			margin-right: auto; 
+			text-align: center;
+				
+			#logo-img {
+				width: 100%;
+			}
+		}
 	}
 	
 	.search-bar {
@@ -41,8 +52,8 @@ html, body { height: 100% }
 			margin: 0px;
 									
 			li {
-				font-size: 1.8em;
-				padding: 18px 14px;
+				font-size: 1.2em;
+				padding: 12px 14px;
 				margin: 0px;
 				border-top: 1px solid #dddddd;
 				cursor: pointer;
