@@ -7,7 +7,7 @@ class Ability
       can :manage, :all
     end
     
-    can [:index, :show, :search], Ingredient
+    can [:index, :show, :search, :update], Ingredient
     can [:create, :show, :rate], Label
     
     # Define abilities for the passed in user here. For example:
