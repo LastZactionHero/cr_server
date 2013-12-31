@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
   
   def index
     @featured_ingredient = find_featured_ingredient(params[:path])    
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.visible
   end
   
   def show
@@ -13,7 +13,7 @@ class IngredientsController < ApplicationController
   
   def search
     name = params[:name]    
-    @ingredients = name ? Ingredient.where("name like ?", "%#{name}%") : nil
+    @ingredients = name ? Ingredient.visible.where("name like ?", "%#{name}%") : nil
 
     render layout: false
   end
@@ -30,6 +30,10 @@ class IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
     @ingredient.update_attributes(params[:ingredient])
+    
+    @ingredient.visible = true
+    @ingredient.save
+    
     redirect_to :action => :unwritten
   end
   

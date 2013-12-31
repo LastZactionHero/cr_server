@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  attr_accessible :description, :name, :bulk_description
+  attr_accessible :description, :name, :bulk_description, :visible
   
   has_many :matches
   has_many :labels, :through => :matches
@@ -9,7 +9,8 @@ class Ingredient < ActiveRecord::Base
   validates_uniqueness_of :name
   
   default_scope order("name ASC")
-   
+  scope :visible, -> { where(visible: true) }
+  
   def self.name_list
     Ingredient.pluck(:name)
   end
