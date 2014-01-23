@@ -1,3 +1,10 @@
+<% content_for :title do %><%= @featured_ingredient %><% end %>
+
+<% content_for :head do %>
+	<meta name="description" content="<%= @featured_ingredient.description %>" />
+<% end %>
+
+
 <div class='row' id='ingredients'>
 	<div class='col-md-3 visible-md visible-lg' id='ingredient-list'>
 		<ul>

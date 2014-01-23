@@ -64,6 +64,7 @@ function loadIngredient(id, path) {
 		success: function(data){				
 			$("#ingredient").html(data);
 			toggleIngredient(true);			
+			document.title = 'digestable | ingredient database and scanner'
 		}			
 	});
 }
