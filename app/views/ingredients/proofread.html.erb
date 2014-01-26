@@ -1,0 +1,25 @@
+<h2>Not Proofred</h2>
+
+<ul class="pagination">
+	<% (1..@pages).each do |i| %>
+		<li><%= link_to i, proofread_ingredients_path(page: i) %></li>
+	<% end %>
+</ul>
+
+<ul id='proofed'>	
+	<% @ingredients.each do |ingredient| %>
+		<%= form_for(ingredient, url: proof_ingredient_path(ingredient)) do |f| %>
+			<li class='row'>
+				<div class='col-md-2'>
+					<%= ingredient.id %>: <%= ingredient.name %>
+				</div>
+				<div class='col-md-8'>
+					<%= f.text_area :description %>
+				</div>
+				<div class='col-md-2'>
+					<%= f.submit "Update", class: "btn btn-success" %>
+				</div>
+			</li>
+		<% end %>
+	<% end %>
+</ul>

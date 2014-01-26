@@ -41,6 +41,22 @@ class IngredientsController < ApplicationController
     Ingredient.find(params[:id]).destroy
     redirect_to :action => :unwritten
   end
+
+  def proofread
+    page_length = 20
+    @page = params[:page].to_i || 1
+
+    @ingredients = Ingredient.visible.not_proofed.offset(@page * page_length).limit(page_length)
+    @pages = (Ingredient.visible.not_proofed.count.to_f / 20.to_f).floor
+  end
+
+  def proof
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.update_attributes(params[:ingredient])
+    @ingredient.proofed!
+
+    redirect_to :action => :proofread
+  end
   
   private 
   

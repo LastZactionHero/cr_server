@@ -128,3 +128,23 @@ html, body { height: 100% }
 	
 	}
 }
+
+ul#proofed {
+	list-style-type: none;
+	padding: 0px;
+
+	li {
+		background-color: #EEEEEE;	
+		padding: 16px;
+
+		textarea {
+			width: 100%;
+			height: 100px;
+		}
+	}
+
+	li:nth-child(even) {
+		background-color: #FFFFFF;
+	}
+	
+}

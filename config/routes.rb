@@ -22,6 +22,7 @@ CrServer::Application.routes.draw do
   resources :ingredients, only: [:index, :show] do
     collection do
       get 'search'
+      get 'proofread'
       
       get 'unwritten'
     end
@@ -30,6 +31,7 @@ CrServer::Application.routes.draw do
       get 'edit'
       put 'update'
       delete 'delete'
+      put 'proof'
     end
   end
   

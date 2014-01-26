@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  attr_accessible :description, :name, :bulk_description, :visible
+  attr_accessible :description, :name, :bulk_description, :visible, :proofed
   
   has_many :matches
   has_many :labels, :through => :matches
@@ -10,6 +10,7 @@ class Ingredient < ActiveRecord::Base
   
   default_scope order("name ASC")
   scope :visible, -> { where(visible: true) }
+  scope :not_proofed, -> { where(proofed: false)}
   
   def self.name_list
     Ingredient.pluck(:name)
@@ -23,4 +24,9 @@ class Ingredient < ActiveRecord::Base
     "/#{URI::encode(name)}"
   end
 
+  def proofed!
+    self.proofed = true
+    save
+  end
+  
 end
