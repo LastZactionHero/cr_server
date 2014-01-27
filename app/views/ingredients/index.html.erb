@@ -2,6 +2,10 @@
 
 <% content_for :head do %>
 	<meta name="description" content="<%= @featured_ingredient.description %>" />
+	<meta property="og:title" content="<%= @featured_ingredient.name %>" />
+	<meta property="og:description" content="<%= @featured_ingredient.description %>" />
+	<meta property="og:url" content="http://digestable.co/<%=u @featured_ingredient.name %>" />
+	<meta property="og:image" content="http://digestable.co/assets/logo_horizontal.png" />
 <% end %>
 
 
