@@ -9,6 +9,7 @@ class Ability
     
     can [:index, :show, :search, :update], Ingredient
     can [:create, :show, :rate], Label
+    can [:current], :ingredient_of_the_week
     
     # Define abilities for the passed in user here. For example:
     #
