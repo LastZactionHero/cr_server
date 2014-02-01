@@ -13,7 +13,11 @@ class IngredientsController < ApplicationController
   
   def search
     name = params[:name]    
-    @ingredients = name ? Ingredient.visible.where("name like ?", "%#{name}%") : nil
+    @ingredients = name ? Ingredient.visible.where("name like ?", "%#{name}%").order("name ASC") : nil
+
+    
+    @ingredients.sort!{|a,b| 
+        a.name.downcase.index(name.downcase) <=> b.name.downcase.index(name.downcase) }
 
     render layout: false
   end
