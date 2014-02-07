@@ -22,6 +22,10 @@ class Ingredient < ActiveRecord::Base
     name
   end
   
+  def technical_effects_string
+    technical_effects.map{|te| te.name}.join(", ")
+  end
+
   def path
     "/#{URI::encode(name)}"
   end
