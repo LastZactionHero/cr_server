@@ -3,19 +3,21 @@ class IngredientsController < ApplicationController
   
   def index
     @featured_ingredient = find_featured_ingredient(params[:path])    
-    @ingredients = Ingredient.visible
+    @ingredients = Ingredient.visible.order("name ASC")
   end
   
   def show
     @ingredient = Ingredient.find(params[:id])
+    @ingredient.increment_view_count!
     render layout: false
   end
   
   def search
-    name = params[:name]    
-    @ingredients = name ? Ingredient.visible.where("name like ?", "%#{name}%").order("name ASC") : nil
+    name = params[:name]
+    @ingredients = name.present? ? Ingredient.visible.where("name like ?", "%#{name}%").order("name ASC") : Ingredient.visible.most_popular.limit(20)
 
-    
+    name ||= ""
+
     @ingredients.sort!{|a,b| 
         a.name.downcase.index(name.downcase) <=> b.name.downcase.index(name.downcase) }
 

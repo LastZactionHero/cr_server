@@ -12,7 +12,7 @@
 <div class='row' id='ingredients'>
 	<div class='col-md-3 visible-md visible-lg' id='ingredient-list'>
 		<ul>
-		<% Ingredient.visible.each do |i| %>
+		<% Ingredient.visible.order("name ASC").each do |i| %>
 			<li>
 				<%= link_to i.name, i.path, 
 					class: 'list-ingredient', 
