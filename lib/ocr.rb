@@ -28,13 +28,14 @@ class Ocr
   def start(filename)
     @ingredient_list = read_ingredient_list
     
-    e = init_tesseract
-    text = e.text_for(filename)
+    text = text_from_image(filename)
+
     text.gsub!(/\n/, " ")
     text.gsub!(/\./, "")
-        
+    text.gsub!(/[ \t]+/, " ")
+  
     blocks = text.split(",").map{|block| block.strip}
-    
+
     ingredients = []
     blocks.each{|b| ingredients << process_block(b)}
     ingredients.flatten!
@@ -52,11 +53,35 @@ class Ocr
       end
     end
     
+    filter_poor_results!(output)
+
     output
   end
   
   private
   
+  POOR_RESULT_THRESHOLD = 0.85
+
+  def filter_poor_results!(results)
+    results.keys.each do |k|
+      results.delete(k) and next unless k
+      results.delete(k) if results[k][:similarity] < POOR_RESULT_THRESHOLD
+    end
+
+    results
+  end
+
+  def text_from_image(image_filename)
+    output_filename = "ocr_#{SecureRandom.hex(10)}"
+    system("tesseract #{image_filename} #{output_filename} -l eng")
+
+    output_file = File.open("#{output_filename}.txt", 'r')
+    text = output_file.read
+    output_file.close
+
+    text
+  end
+
   def process_block(block)    
     words = block.split(" ").map{|w| Word.new(w)}
     
@@ -69,13 +94,26 @@ class Ocr
         word_string = word_block.map{|w| w.word}.join(" ").strip
         
         nearest_match = match_ingredient(word_string)
-        
+
+        word_block_average = 0
         word_block.each do |word|
-          if nearest_match[:distance] >= word.match
+          word_block_average += word.match
+        end
+        word_block_average = word_block_average / word_block.length
+
+        if nearest_match[:distance] >= word_block_average
+          word_block.each do |word|
             word.match = nearest_match[:distance]
             word.ingredient = nearest_match[:ingredient]
-          end            
+          end
         end
+
+        # word_block.each do |word|
+        #   if nearest_match[:distance] >= word.match
+        #     word.match = nearest_match[:distance]
+        #     word.ingredient = nearest_match[:ingredient]
+        #   end            
+        # end
         
       end
     end
@@ -89,6 +127,7 @@ class Ocr
     @ingredient_list.each do |ingredient|
       jarow = FuzzyStringMatch::JaroWinkler.create(:native)
       distance = jarow.getDistance(ingredient.upcase, words)
+      distance = adjust_distance(distance, {ingredient: ingredient, words: words})
       if distance > nearest[:distance] && distance > 0.75
         nearest[:distance] = distance
         nearest[:ingredient] = ingredient
@@ -98,11 +137,17 @@ class Ocr
     nearest
   end
   
-  def init_tesseract
-    e = Tesseract::Engine.new {|e|
-      e.language  = :eng
-      e.whitelist = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ,()[]%.1234567890#'
-    }
+  def adjust_distance(distance, options = {})
+    modified_distance = distance
+
+    if options[:words]
+      # Only allow ingredients >= 4 characters long
+      if options[:words].length < 4
+        modified_distance = 0
+      end
+    end
+
+    modified_distance
   end
   
   def read_ingredient_list
