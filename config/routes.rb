@@ -2,8 +2,8 @@ CrServer::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users
 
-  root :to => "landing#index"
-  match "/d", to: "landing#index"
+  root :to => "ingredients#index"
+  match "/d", to: "ingredients#index"
   
   resources :landing, only: [:index] do
     collection do

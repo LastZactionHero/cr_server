@@ -5,7 +5,9 @@ html, body { height: 100% }
 	overflow: hidden;
 }
 
-#ingredients {
+
+#ingredients {	
+
 	#ingredients-search-container {
 		margin-bottom: -9999px;
 		padding-bottom: 9999px;
@@ -93,6 +95,8 @@ html, body { height: 100% }
 	}
 	
 	#ingredient-list {		
+		z-index: 10000;
+		background-color: white;
 		height: 0px;
 		overflow-y:scroll;
 		overflow-x: hidden;
@@ -147,4 +151,36 @@ ul#proofed {
 		background-color: #FFFFFF;
 	}
 	
+}
+
+#app-footer {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+	background-color: #EFEFEF;
+	padding: 8px 8px 2px 8px;
+
+  #app-footer-dismiss {
+    position: absolute;
+    bottom: 18px;
+    right: 36px;
+    font-size: 2em;
+  }
+
+	p {
+		font-size: 1.2em;
+		font-weight: bold;
+		margin-top: 8px;
+		text-align: right;
+	}
+
+	@media (max-width: 768px) { 
+    p {
+      text-align: center;
+    }
+	}
+	.learn-more {
+		text-align: center;
+	}
 }

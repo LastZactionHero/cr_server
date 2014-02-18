@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	sizeIngredientBar();
+	sizeIngredientBar();	
 	$(window).resize(function(){sizeIngredientBar()});
-	
+
 	bindListIngredients();
 	
 	$(".search-bar").on('input', function(){
@@ -16,6 +16,11 @@ $(document).ready(function(){
 			}
 		}
 	});
+
+	$("#app-footer-dismiss").click(function(){
+		$("#app-footer").hide();
+	});
+
 });
 
 function searchResults(name) {
