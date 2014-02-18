@@ -2,6 +2,10 @@ require "rvm/capistrano"
 require "bundler/capistrano"
 require 'sidekiq/capistrano'
 
+set :whenever_command, "bundle exec whenever"
+set :whenever_environment, defer { rails_env }
+require "whenever/capistrano"
+
 set :application, "cr_server"
 set :keep_releases, 5
 
