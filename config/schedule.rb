@@ -19,6 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 8.hours do
+every 24.hours do
   rake "twitter_autopost:post_random"
+end
+
+every 8.hours do
+  rake "twitter_autopost:auto_favorite"
 end
