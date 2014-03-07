@@ -36,7 +36,7 @@ namespace :twitter_autopost do
   end
 
   def ingredient_search_terms
-    Ingredient.most_popular.limit(10).map{|i| i.name.strip}
+    Ingredient.most_popular.limit(20).map{|i| i.name.strip}
   end
 
 end
