@@ -18,10 +18,13 @@ namespace :twitter_autopost do
     client = twitter_client
 
     ingredient_search_terms.each do |search_term|
-      client.search(search_term, result_type: 'recent', lang: 'en').take(5).each do |tweet|
+      client.search(search_term, result_type: 'recent', lang: 'en').take(3).each do |tweet|
         next if tweet.reply?
-        client.favorite!(tweet)
-        sleep(3)
+        begin
+          client.favorite!(tweet)
+        rescue Exception => e
+        end
+        sleep(30)
       end
     end
   end
@@ -36,7 +39,7 @@ namespace :twitter_autopost do
   end
 
   def ingredient_search_terms
-    Ingredient.most_popular.limit(20).map{|i| i.name.strip}
+    Ingredient.most_popular.limit(10).map{|i| i.name.strip}
   end
 
 end
