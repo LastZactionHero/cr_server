@@ -1,0 +1,12 @@
+<h1>Resources</h1>
+
+<table class='table'>
+  <% @resources.each do |resource| %>
+    <tr>
+      <td><%= resource.type %></td>
+      <td><%= resource.name %></td>
+      <td><%= resource.url %></td>
+      <td><%= link_to "Edit Ingredients", edit_ingredient_resource_path(resource) %></td>
+    </tr>
+  <% end %>
+</table>

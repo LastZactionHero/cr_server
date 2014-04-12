@@ -44,6 +44,13 @@ CrServer::Application.routes.draw do
     end
   end
   
+  resources :resources, only: [:index] do
+    member do
+      get 'edit_ingredient'
+      put 'update_ingredient'
+    end
+  end
+
   match "/sitemap.:format" => 'sitemap#sitemap'
 
   match '*path' => 'ingredients#index'

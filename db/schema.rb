@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207060125) do
+ActiveRecord::Schema.define(:version => 20140412173212) do
 
   create_table "ingredient_of_the_weeks", :force => true do |t|
     t.integer  "ingredient_id"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20140207060125) do
     t.integer "ingredient_id"
     t.integer "regulatory_status_id"
   end
+
+  create_table "ingredients_resources", :force => true do |t|
+    t.integer "ingredient_id"
+    t.integer "resource_id"
+  end
+
+  add_index "ingredients_resources", ["ingredient_id"], :name => "index_ingredients_resources_on_ingredient_id"
+  add_index "ingredients_resources", ["resource_id"], :name => "index_ingredients_resources_on_resource_id"
 
   create_table "ingredients_technical_effects", :id => false, :force => true do |t|
     t.integer "ingredient_id"
@@ -77,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20140207060125) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -90,6 +98,16 @@ ActiveRecord::Schema.define(:version => 20140207060125) do
     t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "resources", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
+    t.string   "type"
+    t.string   "meta_dump"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "technical_effects", :force => true do |t|

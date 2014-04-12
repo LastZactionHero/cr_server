@@ -1,0 +1,3 @@
+class BlogResource < Resource
+
+end

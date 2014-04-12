@@ -1,0 +1,13 @@
+<h1>Edit Ingredients</h1>
+<%= link_to "Resources", resources_path %>
+
+<p><%= @resource.name %></p>
+<p><%= link_to @resource.url %></p>
+
+<%= form_tag(update_ingredient_resource_path(@resource), method: :put) do %>
+  <div class="form-group">
+  <%= text_area_tag :ingredients_csv, @resource.ingredient_csv, class: "form-control", rows: "3" %>
+  </div>
+  <%= submit_tag "Update", class: 'btn' %>
+
+<% end %>
