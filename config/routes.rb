@@ -4,7 +4,8 @@ CrServer::Application.routes.draw do
 
   root :to => "ingredients#index"
   match "/d", to: "ingredients#index"
-
+  match "/api", to: "api_documentation#index"
+  
   resources :landing, only: [:index] do
     collection do
       post :signup

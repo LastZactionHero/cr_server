@@ -1,0 +1,63 @@
+<div class='docs'>
+  <div class='row text-center'>
+    <h2>Ingredient Database API</h2>
+  </div>
+
+  <div class='row'>
+    <h3>Full List</h3>
+    <h4>GET http://digestable.co/ingredients.json</h4>
+
+    <pre>
+    [
+      {"ingredient": {"id":795,"name":"Acetic acid"}},
+      {"ingredient":{"id":797,"name":"Acetone"}},
+      {"ingredient":{"id":800,"name":"Acetylated monoglyceride"}},
+      {"ingredient":{"id":802,"name":"Aconitic acid "}},...
+    ]</pre>
+  </div>
+
+  <div class='row'>
+    <h3>Ingredient Details</h3>
+    <h4>GET http://digestable.co/ingredients/&lt;ingredient_id&gt;.json</h4>
+
+    <pre>
+    {  "ingredient": {
+          "id":1536,
+          "name":"Monosodium glutamate",
+          "description":"Monosodium glutamate (MSG), also known as sodium glutamate...",
+          "view_count":49,
+          "subtitle":"Natural Flavoring Agent"}
+    }</pre>
+  </div>
+
+  <div class='row'>
+    <h3>Search by Name</h3>
+    <h4>GET http://digestable.co/ingredients/search.json?name=&lt;search_term&gt;</h4>
+
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        search_term: (string) Partial search term
+      </li>
+    </ul>
+
+    <pre>
+    [
+      {"ingredient":{"id":1536,"name":"Monosodium glutamate","subtitle":"Natural Flavoring Agent"}},
+      {"ingredient":{"id":1535,"name":"Monopotassium phosphate ","subtitle":"Miscellaneous"}},
+      {"ingredient":{"id":1534,"name":"Monopotassium glutamate","subtitle":"Miscellaneous"}},...
+    ]</pre>
+  </div>
+
+  <hr/>
+
+  <div class='row text-center'>
+    <h3>
+      <%= link_to "Questions or comments?", "mailto:zdicklin@gmail.com" %>
+    </h3>
+  </div>
+
+  <div class='row text-center'>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+  </div>
+</div>
