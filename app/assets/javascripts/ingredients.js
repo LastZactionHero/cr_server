@@ -72,6 +72,7 @@ function loadIngredient(id, path) {
 			toggleIngredient(true);
 			document.title = 'digestable | ingredient database and scanner'
 			bindRelatedIngredients();
+			twttr.widgets.load();
 		}
 	});
 }
