@@ -4,37 +4,34 @@ CrServer::Application.routes.draw do
 
   root :to => "ingredients#index"
   match "/d", to: "ingredients#index"
-  
+
   resources :landing, only: [:index] do
     collection do
       post :signup
     end
   end
-  
+
   devise_for :users
-    
+
   resources :labels, only: [:create, :show] do
     member do
       put 'rate'
     end
   end
-  
-  resources :ingredients, only: [:index, :show] do
+
+  resources :ingredients, only: [:index, :show, :edit, :update] do
     collection do
       get 'search'
       get 'proofread'
-      
       get 'unwritten'
     end
-    
+
     member do
-      get 'edit'
-      put 'update'
       delete 'delete'
       put 'proof'
     end
   end
-  
+
   resources :ingredient_of_the_weeks, only: [:index] do
     collection do
       get 'current'
@@ -43,7 +40,7 @@ CrServer::Application.routes.draw do
       put 'distribute'
     end
   end
-  
+
   resources :resources, only: [:index] do
     member do
       get 'edit_ingredient'
@@ -54,7 +51,7 @@ CrServer::Application.routes.draw do
   match "/sitemap.:format" => 'sitemap#sitemap'
 
   match '*path' => 'ingredients#index'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

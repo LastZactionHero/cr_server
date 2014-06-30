@@ -1,16 +1,17 @@
 $(document).ready(function(){
-	sizeIngredientBar();	
+	sizeIngredientBar();
 	$(window).resize(function(){sizeIngredientBar()});
 
 	bindListIngredients();
-	
+	bindRelatedIngredients();
+
 	$(".search-bar").on('input', function(){
 		var name = $(this).val()
 		if(name.length > 0) {
 			toggleIngredient(false);
 			searchResults(name);
 		} else {
-			clearResults();				
+			clearResults();
 			if(name.length == 0) {
 				toggleIngredient(true);
 			}
@@ -30,10 +31,10 @@ function searchResults(name) {
 			data: {
 				name: name
 			},
-			success: function(data){				
+			success: function(data){
 				$("#search-results").html(data);
 				bindSearchResults();
-			}			
+			}
 		});
 	} else {
 		clearResults();
@@ -63,14 +64,15 @@ function bindSearchResults(){
 function loadIngredient(id, path) {
 	clearResults();
 	updateUrlBar(path);
-	
+
 	$.ajax({
 		url: "/ingredients/" + id,
-		success: function(data){				
+		success: function(data){
 			$("#ingredient").html(data);
-			toggleIngredient(true);			
+			toggleIngredient(true);
 			document.title = 'digestable | ingredient database and scanner'
-		}			
+			bindRelatedIngredients();
+		}
 	});
 }
 
@@ -88,6 +90,21 @@ function bindListIngredients() {
 		var id = $(this).attr('data_id');
 		var path = $(this).attr('data_path');
 		loadIngredient(id, path);
+
+		_gaq.push(['_trackEvent', 'Ingredient', 'List', path]);
+
 		return false;
 	});
+}
+
+function bindRelatedIngredients() {
+	$(".related-ingredient").click(function(){
+		var id = $(this).attr('data_id');
+		var path = $(this).attr('data_path');
+		loadIngredient(id, path);
+
+		_gaq.push(['_trackEvent', 'Ingredient', 'Related', path]);
+
+		return false;
+	})
 }

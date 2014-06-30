@@ -7,3 +7,7 @@
 <div class='col-md-12 description'>
 	<%= ingredient.description %>
 </div>
+
+<div class='col-md-12 related-ingredients'>
+	<%= render partial: "related", locals: {related_ingredients: ingredient.related} %>
+</div>

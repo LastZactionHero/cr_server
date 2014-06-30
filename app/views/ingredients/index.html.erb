@@ -13,14 +13,14 @@
 		<ul>
 		<% Ingredient.visible.order("name ASC").each do |i| %>
 			<li>
-				<%= link_to i.name, i.path, 
-					class: 'list-ingredient', 
+				<%= link_to i.name, i.path,
+					class: 'list-ingredient',
 					data_id: i.id, data_path: i.path %>
 			</li>
 		<% end %>
 		</ul>
 	</div>
-	
+
 	<div class='col-md-9 col-sm-12' id='ingredients-search-container'>
 		<div class='row'>
 			<div class='col-md-offset-3 col-md-6 col-sm-8 col-sm-offset-2' id='logo-container'>
@@ -28,36 +28,22 @@
 					<%= image_tag "ingredient_logo.png", id: 'logo-img' %>
 				</div>
 			</div>
-			
+
 			<div class='col-md-offset-3 col-md-6 col-sm-8 col-sm-offset-2' id='search-bar-container'>
-					<%= text_field_tag :something, nil, 
-						class: 'form-control search-bar', 
+					<%= text_field_tag :something, nil,
+						class: 'form-control search-bar',
 						placeholder: "Search for ingredient" %>
 			</div>
-			
+
 			<div class='col-md-offset-3 col-md-6 col-sm-8 col-sm-offset-2' id='search-results'>
 			</div>
-			
+
 			<div class='col-md-offset-3 col-md-6 col-sm-8 col-sm-offset-2' id='ingredient'>
-				<%= render partial: "ingredient", 
+				<%= render partial: "ingredient",
 					locals: {ingredient: @featured_ingredient}%>
-			</div>			
+			</div>
 		</div>
 
-		<div id='app-footer' class='row'>			
-			<div class='col-md-10 col-sm-9 col-xs-12 clearfix'>
-				<p>
-					Take a picture of an ingredient label, 
-					<span style='color: #d35400;'>see what's inside your food.
-				</span>
-				</p>
-			</div>
-			<div class='col-md-2 col-sm-3 col-xs-12 learn-more'>
-				<a href="https://itunes.apple.com/us/app/digestable/id807322213?mt=8&uo=4" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_appstore-lrg.svg);}"></a>				
-			</div>
-
-			<button id='app-footer-dismiss' type="button" class="close visible-xs" data-dismiss="modal" aria-hidden="true">&times;</button>
-		</div>
 
 	</div>
 </div>

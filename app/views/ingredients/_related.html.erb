@@ -1,0 +1,13 @@
+<% if related_ingredients.any? %>
+<div class='related-to'>
+  Related To
+</div>
+<ul>
+  <% related_ingredients.each do |related| %>
+    <li>
+      <%= link_to related.name, "#", class: 'related-ingredient',
+        data_id: related.id, data_path: related.path %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
